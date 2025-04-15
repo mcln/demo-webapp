@@ -81,10 +81,73 @@ The application is deployed using Helm and the configuration files located in `k
 
 3. Verify the deployment:
     ```bash
-    kubectl get pods
+    ### Installing and Configuring NGINX
+
+    To install and configure NGINX as part of your deployment, follow these steps:
+
+    1. Add the NGINX Helm repository:
+        ```bash
+        helm repo add nginx-stable https://helm.nginx.com/stable
+        helm repo update
+        ```
+
+    2. Install the NGINX Ingress Controller:
+        ```bash
+        helm install nginx-ingress nginx-stable/nginx-ingress
+        ```
+
+    3. Verify the installation:
+        ```bash
+        kubectl get pods -n default -l app.kubernetes.io/name=nginx-ingress
+        ```
+
+        Ensure the NGINX Ingress Controller pods are running successfully.
+
+    4. Configure an Ingress resource for your application:
+        Create a file named `ingress.yaml` with the following content:
+        ```yaml
+        apiVersion: networking.k8s.io/v1
+        kind: Ingress
+        metadata:
+          name: simple-web-app-ingress
+          annotations:
+            nginx.ingress.kubernetes.io/rewrite-target: /
+        spec:
+          rules:
+          - host: <your-domain>
+            http:
+              paths:
+              - path: /
+                pathType: Prefix
+                backend:
+                  service:
+                    name: simple-web-app
+                    port:
+                      number: 80
+        ```
+
+        Replace `<your-domain>` with your desired domain name.
+
+    5. Apply the Ingress resource:
+        ```bash
+        kubectl apply -f ingress.yaml
+        ```
+
+    6. Verify the Ingress configuration:
+        ```bash
+        kubectl describe ingress simple-web-app-ingress
+        ```
+
+        Ensure the Ingress is correctly configured and accessible.
     ```
 
     Ensure all pods are running successfully.
+
+## Accessing the web application
+```bash
+    kubectl get svc -o jsonpath='{.items[?(@.spec.type=="LoadBalancer")].status.loadBalancer.ingress[0].hostname}'
+    ```
+    This will return the default DNS name for the load balancer, which can be pasted into your browser to hit the web app.
 
 ## Cleaning Up
 
