@@ -108,7 +108,8 @@ The application is deployed using Helm and the configuration files located in `k
 ```bash
     kubectl get svc -o jsonpath='{.items[?(@.spec.type=="LoadBalancer")].status.loadBalancer.ingress[0].hostname}'
     ```
-    This will return the default DNS name for the load balancer, which can be pasted into your browser to hit the web app.
+
+This will return the default DNS name for the load balancer, which can be pasted into your browser to hit the web app.
 
 ## Cleaning Up
 
