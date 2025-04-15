@@ -103,31 +103,6 @@ The application is deployed using Helm and the configuration files located in `k
 
         Ensure the NGINX Ingress Controller pods are running successfully.
 
-    4. Configure an Ingress resource for your application:
-        Create a file named `ingress.yaml` with the following content:
-        ```yaml
-        apiVersion: networking.k8s.io/v1
-        kind: Ingress
-        metadata:
-          name: simple-web-app-ingress
-          annotations:
-            nginx.ingress.kubernetes.io/rewrite-target: /
-        spec:
-          rules:
-          - host: <your-domain>
-            http:
-              paths:
-              - path: /
-                pathType: Prefix
-                backend:
-                  service:
-                    name: simple-web-app
-                    port:
-                      number: 80
-        ```
-
-        Replace `<your-domain>` with your desired domain name.
-
     5. Apply the Ingress resource:
         ```bash
         kubectl apply -f ingress.yaml
