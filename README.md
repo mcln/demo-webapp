@@ -65,25 +65,9 @@ Once the EKS cluster is created, configure your `kubectl` context to interact wi
 
     You should see the nodes in your EKS cluster.
 
-## Deploying the Application
+## Set up Nginx for Ingress
 
-The application is deployed using Helm and the configuration files located in `kubernetes/simple-web-app`.
-
-1. Navigate to the `kubernetes/simple-web-app` directory:
-    ```bash
-    cd kubernetes/simple-web-app
-    ```
-
-2. Deploy the application using Helm:
-    ```bash
-    helm install simple-web-app .
-    ```
-
-3. Verify the deployment:
-    ```bash
-    ### Installing and Configuring NGINX
-
-    To install and configure NGINX as part of your deployment, follow these steps:
+    Before deploying the web application, you need to install and configure NGINX as an Ingress Controller. Follow these steps:
 
     1. Add the NGINX Helm repository:
         ```bash
@@ -103,20 +87,22 @@ The application is deployed using Helm and the configuration files located in `k
 
         Ensure the NGINX Ingress Controller pods are running successfully.
 
-    5. Apply the Ingress resource:
-        ```bash
-        kubectl apply -f ingress.yaml
-        ```
+    Once NGINX is installed and running, you can proceed with deploying the web application.
+    Ensure the NGINX Ingress Controller pods are running successfully.
 
-    6. Verify the Ingress configuration:
-        ```bash
-        kubectl describe ingress simple-web-app-ingress
-        ```
+## Deploying the Application
 
-        Ensure the Ingress is correctly configured and accessible.
+The application is deployed using Helm and the configuration files located in `kubernetes/simple-web-app`.
+
+1. Navigate to the `kubernetes/simple-web-app` directory:
+    ```bash
+    cd kubernetes/simple-web-app
     ```
 
-    Ensure all pods are running successfully.
+2. Deploy the application using Helm:
+    ```bash
+    helm install simple-web-app .
+    ```
 
 ## Accessing the web application
 ```bash
