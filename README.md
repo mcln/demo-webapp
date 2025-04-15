@@ -67,7 +67,7 @@ Once the EKS cluster is created, configure your `kubectl` context to interact wi
 
 ## Set up Nginx for Ingress
 
-    Before deploying the web application, you need to install and configure NGINX as an Ingress Controller. Follow these steps:
+Before deploying the web application, you need to install and configure NGINX as an Ingress Controller. Follow these steps:
 
     1. Add the NGINX Helm repository:
         ```bash
@@ -87,8 +87,8 @@ Once the EKS cluster is created, configure your `kubectl` context to interact wi
 
         Ensure the NGINX Ingress Controller pods are running successfully.
 
-    Once NGINX is installed and running, you can proceed with deploying the web application.
-    Ensure the NGINX Ingress Controller pods are running successfully.
+Once NGINX is installed and running, you can proceed with deploying the web application.
+Ensure the NGINX Ingress Controller pods are running successfully.
 
 ## Deploying the Application
 
