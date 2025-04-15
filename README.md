@@ -105,7 +105,7 @@ The application is deployed using Helm and the configuration files located in `k
     ```
 
 ## Accessing the web application
-```bash
+    ```bash
     kubectl get svc -o jsonpath='{.items[?(@.spec.type=="LoadBalancer")].status.loadBalancer.ingress[0].hostname}'
     ```
 
