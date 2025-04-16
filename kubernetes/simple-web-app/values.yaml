@@ -8,9 +8,6 @@ image:
   repository: nginx
   pullPolicy: IfNotPresent
   tag: latest
-  # args:
-  #   - "-listen=:8080"
-  #   - "-text=Should definitely hire that handsome & humble Scottish guy!"
 
 imagePullSecrets: []
 nameOverride: ""
